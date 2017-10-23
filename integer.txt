@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main(void)
+{
+	char a[100];
+	int i,n,j,b,m,k[100];
+	n=0;
+	j=0;
+	i=0;
+	m=0;
+	puts("please input your string:");
+	scanf("%s",a);
+	   while(a[i]!='\0')
+	   {
+	       if(a[i]>=48 && a[i]<=58)
+		   {
+	          j=1;
+              n=n*10+(a[i]-48);
+		   }	
+	       if((j==1)&&(a[i]<48 || a[i]>58))
+		   {
+		    k[m]=n;
+			m++;
+            n=0;
+			j=0;
+		   
+		   
+		   }
+	      i++;
+	   }
+	   if(j==1) k[m]=n;
+	   
+	  for(b=0;b<=m;b++)
+	  {
+
+          if(k[b]>=0)
+	  printf("%d  ",k[b]);
+	  
+	  
+	  }
+	   
+return 0;
+
+
+
+
+}
