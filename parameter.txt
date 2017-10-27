@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdarg.h>
+int sum(int start,...);
+int main(void)
+{
+	printf("sum(1,2,-1024):%d\n",sum(1,2,-1024));
+    printf("sum(1,2,3,4,-1024):%d\n",sum(1,2,3,4,-1024));
+
+    return 0;
+}
+
+int sum(int start,...)
+{
+  va_list ap;
+  int j;
+  int tot=0;
+  int n=start;
+  va_start(ap,start);
+  while(n>0)
+  {
+     tot+=n;
+	 n=va_arg(ap,int);
+  
+  }
+  va_end(ap);
+  return tot;
+}
