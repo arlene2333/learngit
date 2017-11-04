@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define MAX 3
+typedef struct Struct
+{
+
+	int id;
+	double grades;
+
+}student;
+
+int main(void)
+{
+ struct Struct student[MAX];
+struct Struct stu;
+ int cnt=0;
+    for(cnt=0;cnt<MAX;cnt++)
+	{
+		printf("please input the id of the student:");
+		scanf("%d",&student[cnt].id);
+		printf("please input the grade of this student:");
+        scanf("%lf",&student[cnt].grades);
+ 
+	}
+
+	int i=0,j=0;
+	double temp;
+	for(;i<MAX-1;i++)
+	{
+	    for(;j<MAX-i-1;j++)
+		{  
+	       if(student[j].grades > student[j+1].grades)
+		   {
+		     stu=student[j];
+			 student[j] = student[j+1];
+			 student[j+1]=stu;
+		   
+		   }
+	 
+		}
+	
+	}
+
+        int n=MAX-1;
+        for(n=MAX-1;n>=0;n--)
+		{
+		    printf("%d    %lf\n",student[n].id,student[n].grades);
+	
+		}
+
+
+
+
+return 0;
+}
