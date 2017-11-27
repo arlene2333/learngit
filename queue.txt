@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct LNode
+{
+   int data;
+   struct LNode* next;
+
+}LNode,*Linklist;
+
+typedef struct queue
+{
+   Linklist front;
+   Linklist rear;
+
+}QUEUE;
+
+
+void Init(QUEUE* Q);
+void EnQueue(QUEUE* Q,int e);
+void DeQueue(QUEUE* Q,int* e);
+int Getfront(QUEUE* Q,int* e);
+
+
+
+
+
+int main(void)
+{
+	QUEUE Q;
+	Init(&Q);
+	EnQueue(&Q,1);
+	EnQueue(&Q,2);
+	EnQueue(&Q,3);
+
+	int e;
+	DeQueue(&Q,&e);
+    DeQueue(&Q,&e);
+	printf("front is %d\n",Getfront(&Q,&e));
+
+return 0;
+}
+
+
+
+
+
+void Init(QUEUE* Q)
+{ 
+   Q->front = (Linklist)malloc(sizeof(LNode));
+   Q->rear = Q->front;
+
+}
+
+void EnQueue(QUEUE* Q,int e)
+{
+   Linklist s;
+   s = (Linklist)malloc(sizeof(LNode));
+   s->data = e;
+   s->next = NULL;
+   Q->rear->next = s;
+   Q->rear = s;
+
+}
+
+void DeQueue(QUEUE* Q,int* e)
+{
+   Linklist s;
+   *e = Q->front->next->data;
+   s = Q->front->next;
+   Q->front->next = s->next;
+   free(s);
+
+}
+
+int Getfront(QUEUE* Q,int* e)
+{
+   *e = Q->front->next->data;
+
+   return *e;
+
+}
