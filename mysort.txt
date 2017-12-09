@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+int compare(const void* a,const void*b)
+{
+   return *(int*)a-*(int*)b;
+}
+void mysort(void* base,size_t num,size_t size,int(*compare)(const void*,const void*));
+void exchange(void* from,void* to,size_t size);
+
+
+int main(void)
+{
+	int a[6]={4,9,34,36,1,6};
+	mysort(a,sizeof(a)/sizeof(int),sizeof(int),compare);
+		for(int i = 0;i<sizeof(a)/sizeof(int);i++)
+		{
+		   printf("%5d",a[i]);
+		
+		}
+         return 0;
+
+}
+
+
+
+
+void mysort(void* base,size_t num,size_t size,int(*compare)(const void*,const void*))
+{
+   int m;
+   for(m = 0 ; m < num ; m++)
+   {
+     int key = m;
+	 int j;
+	 for(j = m+1;j < num;j++)
+	 {
+	   if(compare((char*)base + key*size,(char*)base + j*size)>0)
+		   key = j;
+	 
+	 }
+	 if(key != m)
+		 exchange((char*)base + size*key,(char*)base + size*m,size);
+	 
+   
+   
+   }
+
+
+
+}
+
+void exchange(void* from,void* to,size_t size)
+{
+     char temp;
+	 char* fromptr = (char*)from;
+	 char* toptr = (char*)to;
+	 for(int i = 0;i<(int)size;i++)
+	 {
+	    temp = *(fromptr+i);
+		*(fromptr+i) = *(toptr + i);
+        *(toptr + i) = temp;
+
+
+
+	 }
+
+
+}
