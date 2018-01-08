@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<string.h>
+void change(char* str,char* s);
+int main(void)
+{
+   char str[50];
+   char s[10];
+   printf("please input a string:");
+   gets(str);
+   printf("please input the string you want to delete:");
+   gets(s);
+   change(str,s);
+
+   return 0;
+}
+
+
+void change(char* str,char* s)
+{
+   int i=0;
+   int len=strlen(s);
+   int slen=strlen(str);
+   
+   while(str[i]!='\0')
+   {
+	   
+	   for(int n=0;n<len;n++)
+	   {
+	       if(str[i]==s[n])
+			   i++;
+		   else
+		       break;
+	   
+	   }
+       if(n==len)
+	   {
+	        
+		   for(;str[i]!='\0';i++)
+		  {
+		     str[i-len]=str[i];
+		  
+		  }
+	       str[strlen(str)-len]='\0';
+		   i=0;
+	   }
+
+	   else
+         i++;
+	  
+   }
+
+
+   printf("%s",str);
+
+
+
+}
